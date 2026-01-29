@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TS. Mã Trường Thành | AI for Heritage & Life</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #1a237e;
+        --gold: #c9a24a;
+        --soft-gold: #f7d08b;
+        --bg: #f6f7fb;
+        --text: #1f2937;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Manrope", system-ui, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.7;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .container {
+        width: min(1120px, 92vw);
+        margin: 0 auto;
+      }
+
+      header {
+        background: radial-gradient(circle at top right, rgba(247, 208, 139, 0.18), transparent 55%),
+          var(--navy);
+        color: white;
+        padding: 80px 0 60px;
+      }
+
+      .header-grid {
+        display: grid;
+        gap: 40px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        align-items: center;
+      }
+
+      .badge {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 6px 16px;
+        border-radius: 999px;
+        border: 1px solid rgba(247, 208, 139, 0.5);
+        color: var(--soft-gold);
+        font-size: 12px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+      }
+
+      .hero-title {
+        font-size: clamp(32px, 4vw, 48px);
+        margin: 12px 0;
+      }
+
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+      }
+
+      .tag {
+        padding: 8px 16px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.15);
+        font-size: 13px;
+      }
+
+      .contact-card {
+        background: rgba(255, 255, 255, 0.12);
+        border-radius: 24px;
+        padding: 24px;
+        backdrop-filter: blur(10px);
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .contact-item {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 12px 16px;
+        border-radius: 16px;
+      }
+
+      main {
+        padding: 60px 0 80px;
+        display: flex;
+        flex-direction: column;
+        gap: 80px;
+      }
+
+      .section-title {
+        font-size: clamp(24px, 3vw, 32px);
+        color: var(--navy);
+        margin: 6px 0 12px;
+      }
+
+      .section-lead {
+        color: #556070;
+        margin-top: 0;
+      }
+
+      .grid-two {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      }
+
+      .card {
+        background: white;
+        border-radius: 24px;
+        padding: 24px;
+        border: 1px solid #e5e7eb;
+        box-shadow: 0 18px 40px -30px rgba(15, 23, 42, 0.4);
+      }
+
+      .pillars {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 16px;
+      }
+
+      .chip {
+        padding: 6px 12px;
+        border-radius: 999px;
+        background: #f1f5f9;
+        font-size: 12px;
+        font-weight: 600;
+        color: #334155;
+      }
+
+      .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .timeline-item {
+        border-left: 3px solid var(--soft-gold);
+        padding-left: 16px;
+      }
+
+      .timeline-item span {
+        text-transform: uppercase;
+        font-size: 11px;
+        color: #94a3b8;
+      }
+
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin: 20px 0 16px;
+      }
+
+      .filter-btn {
+        border: 1px solid #e5e7eb;
+        border-radius: 999px;
+        padding: 8px 16px;
+        font-size: 11px;
+        text-transform: uppercase;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        background: white;
+        color: #475569;
+        cursor: pointer;
+      }
+
+      .filter-btn.active {
+        background: var(--navy);
+        color: white;
+        border-color: var(--navy);
+      }
+
+      .publication {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 16px;
+        border-radius: 18px;
+        border: 1px solid #e5e7eb;
+        background: white;
+      }
+
+      .publication .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: #64748b;
+        font-size: 13px;
+      }
+
+      .rank {
+        padding: 4px 10px;
+        border-radius: 999px;
+        background: rgba(247, 208, 139, 0.5);
+        color: var(--navy);
+        font-size: 11px;
+        font-weight: 700;
+        align-self: flex-start;
+      }
+
+      .projects {
+        display: grid;
+        gap: 24px;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
+
+      .project-status {
+        padding: 4px 12px;
+        border-radius: 999px;
+        background: rgba(26, 35, 126, 0.12);
+        color: var(--navy);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .highlight {
+        background: var(--navy);
+        color: white;
+        border-radius: 24px;
+        padding: 28px;
+      }
+
+      .sitemap {
+        display: grid;
+        gap: 16px;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+
+      footer {
+        background: white;
+        border-top: 1px solid #e5e7eb;
+        padding: 28px 0;
+        font-size: 14px;
+        color: #64748b;
+      }
+
+      .footer-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container header-grid">
+        <div>
+          <span class="badge">AI for Heritage &amp; Life</span>
+          <h1 class="hero-title">Tiến sĩ Mã Trường Thành</h1>
+          <p>
+            Giảng viên Khoa học máy tính tại Trường Đại học Cần Thơ, chuyên gia Trí tuệ nhân tạo và
+            Ontology cho di sản, y tế và môi trường. 11 năm kinh nghiệm giảng dạy và nghiên cứu liên
+            ngành.
+          </p>
+          <div class="hero-tags">
+            <span class="tag">PhD in AI &amp; Ontology</span>
+            <span class="tag">Can Tho University</span>
+            <span class="tag">29 Publications</span>
+          </div>
+        </div>
+        <div class="contact-card">
+          <div>
+            <h3>Thông tin liên hệ</h3>
+            <p>Sẵn sàng hợp tác nghiên cứu &amp; tư vấn AI.</p>
+          </div>
+          <div class="contact-item">
+            <strong>Email:</strong> mtthanh@ctu.edu.vn
+          </div>
+          <div class="contact-item">
+            <strong>Email 2:</strong> truongthanh1511@gmail.com
+          </div>
+          <div class="contact-item">
+            <strong>Điện thoại:</strong> 0948.77.99.77
+          </div>
+          <div class="contact-item">
+            <strong>Địa chỉ:</strong> 353 Phú Lợi, khóm 3, Phường 2, TP. Sóc Trăng
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="grid-two">
+        <div class="card">
+          <h2 class="section-title">Giới thiệu bản thân</h2>
+          <p class="section-lead">
+            <strong>Tiếng Việt:</strong> Tôi là Tiến sĩ Mã Trường Thành, giảng viên tại Trường Đại học
+            Cần Thơ, nghiên cứu Trí tuệ nhân tạo và Ontology với mục tiêu kết nối tri thức số cùng di
+            sản văn hoá và đời sống cộng đồng. Tôi xây dựng các mô hình AI phục vụ bảo tồn văn hoá phi
+            vật thể, y tế và môi trường, đồng thời phát triển hệ sinh thái tri thức mở cho giáo dục và
+            chuyển đổi số bền vững.
+          </p>
+          <p class="section-lead">
+            <strong>English:</strong> I am Dr. Ma Truong Thanh, a Computer Science lecturer at Can Tho
+            University specializing in Artificial Intelligence and ontologies. My work bridges
+            digital knowledge with cultural heritage and human well-being, delivering AI solutions
+            for heritage preservation, healthcare, and environmental sustainability. I am passionate
+            about building open knowledge ecosystems for education and long-term digital
+            transformation.
+          </p>
+        </div>
+        <div class="card">
+          <h2 class="section-title">Thông tin nhanh</h2>
+          <p><strong>Học vị:</strong> Tiến sĩ Khoa học máy tính (Trí tuệ nhân tạo &amp; ứng dụng).</p>
+          <p><strong>Chức vụ:</strong> Giảng viên - Trường Đại học Cần Thơ.</p>
+          <p><strong>Chuyên môn:</strong> AI &amp; Ontology · Digital Heritage · Environmental/Medical AI.</p>
+        </div>
+      </section>
+
+      <section>
+        <span class="badge">Research</span>
+        <h2 class="section-title">Ba trụ cột nghiên cứu</h2>
+        <p class="section-lead">
+          Hướng đến sự giao thoa giữa AI, di sản và các bài toán bền vững cho cộng đồng.
+        </p>
+        <div class="pillars">
+          <div class="card">
+            <h3>AI &amp; Ontology</h3>
+            <p>
+              Merging ontologies, knowledge graphs và reasoning nhằm tạo ra nền tảng tri thức mở cho
+              các hệ thống AI.
+            </p>
+            <div class="chips">
+              <span class="chip">Ontology Merging</span>
+              <span class="chip">Knowledge Graphs</span>
+              <span class="chip">Semantic Reasoning</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Digital Heritage</h3>
+            <p>
+              Ứng dụng AI để bảo tồn di sản phi vật thể và văn hoá truyền thống Việt Nam thông qua
+              nhận diện và tái hiện số.
+            </p>
+            <div class="chips">
+              <span class="chip">VIPRIME</span>
+              <span class="chip">Dance &amp; Music Heritage</span>
+              <span class="chip">Cultural Knowledge Graph</span>
+            </div>
+          </div>
+          <div class="card">
+            <h3>Environmental/Medical AI</h3>
+            <p>
+              AI hỗ trợ y tế, môi trường và quản trị bền vững, từ mạng lưới nước thải đến giải phẫu học
+              y khoa.
+            </p>
+            <div class="chips">
+              <span class="chip">Wastewater Management</span>
+              <span class="chip">Medical Anatomy</span>
+              <span class="chip">Smart Monitoring</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid-two">
+        <div>
+          <span class="badge">Publications</span>
+          <h2 class="section-title">Ấn phẩm nổi bật</h2>
+          <p class="section-lead">
+            Danh mục 29 công trình được sắp xếp mới nhất, có thể lọc theo năm hoặc xếp hạng.
+          </p>
+          <div class="filters" id="filters">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="2024">2024</button>
+            <button class="filter-btn" data-filter="2023">2023</button>
+            <button class="filter-btn" data-filter="2022">2022</button>
+            <button class="filter-btn" data-filter="q2">Q2</button>
+            <button class="filter-btn" data-filter="a*">A*</button>
+            <button class="filter-btn" data-filter="core">Core</button>
+          </div>
+          <div class="publication-list">
+            <article class="publication" data-year="2024" data-rank="q2">
+              <span class="rank">Q2</span>
+              <strong>PETSAI-Ext: Scalable Ontology Expansion</strong>
+              <div class="meta">SN Computer Science, Springer · 2024 · AI &amp; Ontology</div>
+            </article>
+            <article class="publication" data-year="2024" data-rank="conference">
+              <span class="rank">Conference</span>
+              <strong>ViFLAVOR: Vietnamese Culinary Knowledge Graph</strong>
+              <div class="meta">FAIR'24 · 2024 · Digital Heritage</div>
+            </article>
+            <article class="publication" data-year="2024" data-rank="q2">
+              <span class="rank">Q2</span>
+              <strong>BranchLabelNet for Medical Anatomy</strong>
+              <div class="meta">Journal of Medical &amp; Biological Engineering &amp; Computing · 2024</div>
+            </article>
+            <article class="publication" data-year="2024" data-rank="q2">
+              <span class="rank">Q2</span>
+              <strong>Wastewater Network Modeling</strong>
+              <div class="meta">SN Computer Science, Springer · 2024 · Environmental AI</div>
+            </article>
+            <article class="publication" data-year="2023" data-rank="core">
+              <span class="rank">Core</span>
+              <strong>Viwat: Wastewater Management Ontology</strong>
+              <div class="meta">KR'2023 · 2023 · AI &amp; Ontology</div>
+            </article>
+            <article class="publication" data-year="2022" data-rank="a*">
+              <span class="rank">A*</span>
+              <strong>Ontology Merging for Open Domains</strong>
+              <div class="meta">KR'22 (Core Ranking A*) · 2022</div>
+            </article>
+            <article class="publication" data-year="2022" data-rank="q2">
+              <span class="rank">Q2</span>
+              <strong>Ontology Merging in Knowledge Systems</strong>
+              <div class="meta">KSEM 2022 · 2022</div>
+            </article>
+            <article class="publication" data-year="2023" data-rank="conference">
+              <span class="rank">Conference</span>
+              <strong>Ontology Merging in Intelligent Agents</strong>
+              <div class="meta">ICAART 2023 · 2023</div>
+            </article>
+            <article class="publication" data-year="2019" data-rank="conference">
+              <span class="rank">Conference</span>
+              <strong>VIPRIME: Thai Dance Heritage Recognition</strong>
+              <div class="meta">SITIS'19 · 2019 · Digital Heritage</div>
+            </article>
+            <article class="publication" data-year="2019" data-rank="conference">
+              <span class="rank">Conference</span>
+              <strong>Vietnamese Traditional Dance Analytics</strong>
+              <div class="meta">ICMLA'19 · 2019 · Digital Heritage</div>
+            </article>
+            <article class="publication" data-year="2018" data-rank="conference">
+              <span class="rank">Conference</span>
+              <strong>Ethnic Music Instrument Classification</strong>
+              <div class="meta">SEKE'18 · 2018 · Digital Heritage</div>
+            </article>
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="section-title">Hành trình học thuật</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <span>2019 - 2022</span>
+              <strong>Tiến sĩ Khoa học máy tính - Đại học Artois, Pháp</strong>
+              <p>Luận án: On Merging of Open-Domain Ontologies.</p>
+            </div>
+            <div class="timeline-item">
+              <span>2011 - 2013</span>
+              <strong>Thạc sĩ - Đại học Cần Thơ</strong>
+              <p>Luận văn: Điều khiển Robot Pioneer P3-DX bám sát đối tượng.</p>
+            </div>
+            <div class="timeline-item">
+              <span>2007 - 2011</span>
+              <strong>Cử nhân Tin học - Đại học An Giang</strong>
+              <p>Tốt nghiệp 2011, nền tảng vững chắc về hệ thống thông tin.</p>
+            </div>
+            <div class="timeline-item">
+              <span>2011 - 2022</span>
+              <strong>Giảng viên - Cao đẳng Cộng đồng Sóc Trăng</strong>
+              <p>11 năm giảng dạy, phát triển chương trình và dự án ứng dụng.</p>
+            </div>
+            <div class="timeline-item">
+              <span>10/2022 - Nay</span>
+              <strong>Giảng viên - Trường Đại học Cần Thơ</strong>
+              <p>Giảng dạy, nghiên cứu AI và điều phối dự án liên ngành.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <span class="badge">News &amp; Projects</span>
+        <h2 class="section-title">Tin tức &amp; Dự án</h2>
+        <p class="section-lead">
+          Các hoạt động giảng dạy, dự án nghiên cứu và hướng dẫn học thuật.
+        </p>
+        <div class="projects">
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+              <h3>VIPRIME - Bảo tồn văn hoá phi vật thể</h3>
+              <span class="project-status">Đang thực hiện</span>
+            </div>
+            <p>
+              Dự án chủ nhiệm tập trung vào nhận diện, số hoá và tái hiện nghệ thuật truyền thống.
+            </p>
+          </div>
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+              <h3>Hệ thống hỗ trợ giáo viên</h3>
+              <span class="project-status">Đã hoàn thành</span>
+            </div>
+            <p>Xây dựng nền tảng hỗ trợ quản lý lớp học và phân tích học tập.</p>
+          </div>
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+              <h3>So khớp mặt người bằng SIFT</h3>
+              <span class="project-status">Đã hoàn thành</span>
+            </div>
+            <p>Ứng dụng thị giác máy tính nhận diện khuôn mặt theo thời gian thực.</p>
+          </div>
+          <div class="card">
+            <div style="display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+              <h3>Quản lý dữ liệu nội bộ</h3>
+              <span class="project-status">Đã hoàn thành</span>
+            </div>
+            <p>Chuẩn hoá dữ liệu, tự động hoá quy trình lưu trữ tại đơn vị.</p>
+          </div>
+        </div>
+        <div class="highlight" style="margin-top: 24px;">
+          <h3>Hướng dẫn học thuật</h3>
+          <p>
+            Đang hướng dẫn nghiên cứu sinh về “Phân lớp dữ liệu biểu hiện Gen” với mục tiêu ứng dụng
+            AI trong y sinh và y học chính xác.
+          </p>
+        </div>
+      </section>
+
+      <section>
+        <span class="badge">Sitemap</span>
+        <h2 class="section-title">Cấu trúc website</h2>
+        <p class="section-lead">
+          Đề xuất sitemap và nội dung chi tiết cho từng trang portfolio khoa học.
+        </p>
+        <div class="sitemap">
+          <div class="card">
+            <h3>Trang chủ</h3>
+            <p>Banner nổi bật, giới thiệu AI for Heritage &amp; Life, điểm nhấn chuyên môn và liên hệ.</p>
+          </div>
+          <div class="card">
+            <h3>Nghiên cứu</h3>
+            <p>Ba trụ cột nghiên cứu, định hướng, phòng thí nghiệm và hợp tác chiến lược.</p>
+          </div>
+          <div class="card">
+            <h3>Ấn phẩm</h3>
+            <p>Danh mục 29 công trình, bộ lọc theo năm và xếp hạng Q2/Q4/Core A*.</p>
+          </div>
+          <div class="card">
+            <h3>Tin tức &amp; Dự án</h3>
+            <p>Cập nhật dự án VIPRIME, giảng dạy, workshop và hướng dẫn nghiên cứu sinh.</p>
+          </div>
+          <div class="card">
+            <h3>Liên hệ</h3>
+            <p>Thông tin liên hệ, địa chỉ, biểu mẫu hợp tác nghiên cứu và mạng xã hội.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-grid">
+        <div>
+          <strong>TS. Mã Trường Thành</strong>
+          <div>AI for Heritage &amp; Life · Trường Đại học Cần Thơ</div>
+        </div>
+        <div>mtthanh@ctu.edu.vn · 0948.77.99.77</div>
+      </div>
+    </footer>
+
+    <div id="root" class="hidden"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      const buttons = document.querySelectorAll(".filter-btn");
+      const items = document.querySelectorAll(".publication");
+
+      const applyFilter = (filter) => {
+        items.forEach((item) => {
+          const year = item.dataset.year;
+          const rank = item.dataset.rank;
+          const matches =
+            filter === "all" ||
+            filter === year ||
+            (filter === "q2" && rank === "q2") ||
+            (filter === "a*" && rank === "a*") ||
+            (filter === "core" && rank === "core");
+          item.style.display = matches ? "flex" : "none";
+        });
+      };
+
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          buttons.forEach((btn) => btn.classList.remove("active"));
+          button.classList.add("active");
+          applyFilter(button.dataset.filter);
+        });
+      });
+    </script>
+  </body>
+</html>
